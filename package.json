@@ -2,11 +2,17 @@
   "name": "teamManagemantEnv",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
   "author": "Cory House",
   "license": "MIT",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
+  },
+  "scripts":{
+    "prestart": "babel-node buildScript/startMessage",
+    "start": "npm-run-all --parallel open:src",
+    "open:src":"node buildScript/server",
+    "localtunnel":"lt --port 3000",
+    "share":"npm-run-all --parallel open:src localtunnel"
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
