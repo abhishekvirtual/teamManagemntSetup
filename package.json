@@ -9,10 +9,13 @@
   },
   "scripts":{
     "prestart": "babel-node buildScript/startMessage",
-    "start": "npm-run-all --parallel open:src",
-    "open:src":"node buildScript/server",
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "lint":"esw webpack.config.* src buildScript --color",
+    "lint:watch":"npm run lint -- --watch",
+    "open:src":"babel-node buildScript/server",
     "localtunnel":"lt --port 3000",
-    "share":"npm-run-all --parallel open:src localtunnel"
+    "share":"npm-run-all --parallel open:src localtunnel",
+    "test":"mocha --reporter progress buildScript/testSetup.js \"src/**/*.test.js\""
   },
   "devDependencies": {
     "babel-cli": "6.16.0",
